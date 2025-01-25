@@ -4,9 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "dev": "vite",
     "tauri": "tauri",
     "_build": "vue-tsc --noEmit && vite build",
     "build": "yarn tauri build",
+    "4dev": "yarn tauri dev",
     "ios-xcode": "yarn tauri ios init",
     "ios-build": "yarn tauri ios build"
   },
