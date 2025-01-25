@@ -13,7 +13,7 @@ fn open_browser() -> Browser {
 }
 
 #[tauri::command]
-fn run_browser(param: &str) -> String {
+pub fn run_browser(param: &str) -> String {
     let path = format!("https://hifini.com/search-{}.htm", param);
     let browser = open_browser();
     let tab = browser.new_tab().unwrap();
@@ -27,13 +27,4 @@ fn run_browser(param: &str) -> String {
         "Hello, {}! You've been greeted from Rust! Here are the links on the page:\n{}",
         param, title_text
     )
-}
-
-#[cfg_attr(mobile, tauri::mobile_entry_point)]
-pub fn run() {
-    tauri::Builder::default()
-        .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![run_browser])
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
 }
